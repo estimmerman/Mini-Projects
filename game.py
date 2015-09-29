@@ -31,13 +31,25 @@ def run_game(start_topic, key):
 		else:
 			page_url = wiki_url + wiki_links[randint(0,len(wiki_links) - 1)]
 			time.sleep(3)
+			
 
 def is_good_wiki_link(link):
 	return ":" not in link and link.startswith("/wiki/")
 
 def start():
-	topic = raw_input("Please enter a start page (topic): ")
-	word = raw_input("Please enter a word that you would like to search for: ")
+	topic_okay = False
+	while topic_okay == False:
+		try:
+			topic = raw_input("Please enter a start page (topic): ")
+			word = raw_input("Please enter a word that you would like to search for: ")
+			page = urllib2.urlopen("http://en.wikipedia.org/wiki/" + urllib.quote(topic))
+		except urllib2.HTTPError, err:
+			print "No page found for this topic, maybe you misspelled something?", err.code
+		except urllib2.URLError, err:
+			print "Some unknown error occurred...", err.reason
+		else:
+			topic_okay = True
+	
 	run_game(topic, word)
 
 start()
