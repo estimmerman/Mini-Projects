@@ -33,12 +33,14 @@ def run_game(start_topic, key):
 		possible_finds = filter(lambda x: len(x) == len(key), page.body.find_all(text=re.compile(key, re.I)))
 		if len(possible_finds) > 0:
 			element = possible_finds[0].parent
-			print element
 	
 			if article_title:
                 		print "Success! Found word in article: " + article_title
 			else:
 				print "Success! Found word in article with url: " + urllib.unquote(page_url)
+			
+			print "HTML element: " 
+			print element
 			found = True		
 		else:
 			page_url = wiki_url + wiki_links[randint(0,len(wiki_links) - 1)]
