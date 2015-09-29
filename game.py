@@ -29,8 +29,12 @@ def run_game(start_topic, key):
 		for a in page.find_all('a', href=True):
 			if is_good_wiki_link(a['href'], checked_urls):
 				wiki_links.append(a['href'])
+		
+		possible_finds = filter(lambda x: len(x) == len(key), page.body.find_all(text=re.compile(key, re.I)))
+		if len(possible_finds) > 0:
+			element = possible_finds[0].parent
+			print element
 	
-		if len(page.body.find_all(text=re.compile(key))) > 0:
 			if article_title:
                 		print "Success! Found word in article: " + article_title
 			else:
