@@ -25,7 +25,6 @@ def run_game(start_topic, key):
 			if is_good_wiki_link(a['href']):
 				wiki_links.append(a['href'])
 	
-		print page.body.find_all(text="the")
 		if len(page.body.find_all(text=re.compile(key))) > 0:
 			print "Success! Found word in article: " + article_title
 			found = True		
@@ -36,6 +35,9 @@ def run_game(start_topic, key):
 def is_good_wiki_link(link):
 	return ":" not in link and link.startswith("/wiki/")
 
+def start():
+	topic = raw_input("Please enter a start page (topic): ")
+	word = raw_input("Please enter a word that you would like to search for: ")
+	run_game(topic, word)
 
-run_game("World War II", "global")
-
+start()
