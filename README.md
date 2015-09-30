@@ -1,4 +1,4 @@
-# Wikipedia Game
+# Project 1 - Wikipedia Game
 A basic python implementation of the 'Wikipedia Game'.
 
 The Wikipedia Game is a game where you start on a given Wikipedia page, and must go from page to page in search of a certain word.
