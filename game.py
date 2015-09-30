@@ -56,8 +56,7 @@ def start():
 	while topic_okay == False:
 		try:
 			topic = raw_input("Please enter a start page (topic): ")
-			word = raw_input("Please enter a word that you would like to search for: ")
-			page = urllib2.urlopen("http://en.wikipedia.org/wiki/" + urllib.quote(topic))
+		        page = urllib2.urlopen("http://en.wikipedia.org/wiki/" + urllib.quote(topic.strip()))
 		except urllib2.HTTPError, err:
 			print "No page found for this topic, maybe you misspelled something?", err.code
 		except urllib2.URLError, err:
@@ -65,6 +64,12 @@ def start():
 		else:
 			topic_okay = True
 	
-	run_game(topic, word)
+	word_okay = False
+	while word_okay == False:
+       		word = raw_input("Please enter a word that you would like to search for: ")
+		if len(word.strip()) > 0:
+			word_okay = True
+
+	run_game(topic.strip(), word.strip())
 
 start()
