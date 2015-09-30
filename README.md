@@ -1,3 +1,9 @@
+# Table of Contents
+
+This is a collection of small projects I've done in my free time.
+
+Project 1 - Wikipedia Game
+
 # Project 1 - Wikipedia Game
 A basic python implementation of the 'Wikipedia Game'.
 
