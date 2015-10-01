@@ -5,13 +5,13 @@ import urllib
 import time
 import re
 
+wiki_url = "http://en.wikipedia.org"
+wiki_param = "/wiki/"
+
 def open_url(url):
         return BeautifulSoup(urllib2.urlopen(url).read(), "html.parser")
 
 def run_game(start_topic, key):
-	wiki_url = "http://en.wikipedia.org"
-	wiki_param = "/wiki/"
-	
 	page_url = wiki_url + wiki_param + urllib.quote(start_topic)
 	
 	checked_urls = []
@@ -49,14 +49,14 @@ def run_game(start_topic, key):
 			
 
 def is_good_wiki_link(link, checked_urls):
-	return ":" not in link and link.startswith("/wiki/") and not link in checked_urls
+	return ":" not in link and link.startswith("/wiki/") and (wiki_url + link) not in checked_urls
 
 def start():
 	topic_okay = False
 	while topic_okay == False:
 		try:
 			topic = raw_input("Please enter a start page (topic): ")
-		        page = urllib2.urlopen("http://en.wikipedia.org/wiki/" + urllib.quote(topic.strip()))
+		        page = urllib2.urlopen(wiki_url +  wiki_param + urllib.quote(topic.strip()))
 		except urllib2.HTTPError, err:
 			print "No page found for this topic, maybe you misspelled something?", err.code
 		except urllib2.URLError, err:
