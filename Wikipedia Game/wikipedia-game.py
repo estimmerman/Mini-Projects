@@ -20,7 +20,7 @@ def run_game(start_topic, key):
 	while found == False:
 		page = open_url(page_url)
 		article_title = page.find_all('h1', id="firstHeading")[0].string
-               	if article_title:
+       	if article_title:
 			print "Searching Article on: " + article_title
 		else:
 			print "Searching Article with url: " + urllib.unquote(page_url)
@@ -35,7 +35,7 @@ def run_game(start_topic, key):
 			element = possible_finds[0].parent
 	
 			if article_title:
-                		print "Success! Found word in article: " + article_title
+        		print "Success! Found word in article: " + article_title
 			else:
 				print "Success! Found word in article with url: " + urllib.unquote(page_url)
 			
